@@ -27,13 +27,13 @@ class Post(models.Model):
     title = models.CharField(max_length=60)
     item_price = models.IntegerField(validators=[MinValueValidator(1)])
     CONDITION_CHOICES = [
-        ('새제품', '新品'),
-        ('최상', '美品'),
-        ('상', '上'),
-        ('중', '中'),
-        ('하', '下'),
+        ('新品', '新品'),
+        ('美品', '美品'),
+        ('上', '上'),
+        ('中', '中'),
+        ('下', '下'),
     ]
-    item_condition = models.CharField(max_length=10, choices=CONDITION_CHOICES)
+    item_condition = models.CharField(max_length=10, choices=CONDITION_CHOICES, default=None)
     item_details = models.TextField(blank=True)
     image1 = models.ImageField(upload_to='item_pics')
     image2 = models.ImageField(upload_to='item_pics', blank = True)
