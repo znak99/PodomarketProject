@@ -25,20 +25,20 @@
             </span>
           </div>
           <div class="meta">
-            {{ post.dt_created|date:"Y.n.j" }}&nbsp;|&nbsp;{{ post.author.address }}
+            {{ post.dt_created|date:"Y.m.d" }}&nbsp;|&nbsp;{{ post.author.address }}
           </div>
-          <a class="podo-button primary button" href="#">자세히보기</a>
+          <a class="podo-button primary button" href="{% url 'post-detail' post.id %}">詳細を見る</a>
         </div>
       </div>
     {% empty %}
-      <p class="empty">판매중인 상품이 없어요 :(</p>
+      <p class="empty">まだ商品がありません :(</p>
     {% endfor %}
 
   {% if is_paginated %}
     <ul class="pagination">
       {% if page_obj.has_previous %}
-        <li><a href="?page=1">처음</a></li>
-        <li><a href="?page={{ page_obj.previous_page_number }}">이전</a></li>
+        <li><a href="?page=1">最初</a></li>
+        <li><a href="?page={{ page_obj.previous_page_number }}">前</a></li>
       {% endif %}
 
       {% for num in page_obj.paginator.page_range %}
@@ -50,8 +50,8 @@
       {% endfor %}
 
       {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}">다음</a></li>
-        <li><a href="?page={{ page_obj.paginator.num_pages }}">마지막</a></li>
+        <li><a href="?page={{ page_obj.next_page_number }}">後</a></li>
+        <li><a href="?page={{ page_obj.paginator.num_pages }}">最後</a></li>
       {% endif %}
     </ul>
   {% endif %}
