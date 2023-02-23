@@ -9,7 +9,7 @@ from django.views.generic import (
 )
 from allauth.account.views import PasswordChangeView
 from podomarket.models import Post
-from .forms import PostForm
+from .forms import PostCreateForm, PostUpdateForm
 
 class IndexView(ListView):
     model = Post
@@ -25,7 +25,7 @@ class PostDetailView(DetailView):
     
 class PostCreateView(CreateView):
     model = Post
-    form_class = PostForm
+    form_class = PostCreateForm
     template_name = 'podomarket/post_form.html'
     
     def get_success_url(self):
@@ -37,7 +37,7 @@ class PostCreateView(CreateView):
     
 class PostUpdateView(UpdateView):
     model = Post
-    form_class = PostForm
+    form_class = PostUpdateForm
     template_name = "podomarket/post_form.html"
     pk_url_kwarg = "post_id"
     

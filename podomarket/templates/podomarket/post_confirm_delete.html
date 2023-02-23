@@ -8,7 +8,7 @@
   <span>この商品を削除しますか？</span>
   <div class="buttons">
     <button class="podo-button darkpurple" type="submit">削除する</button>
-    <a class="podo-button darkgray" href="#">キャンセル</a>
+    <a class="podo-button darkgray" href="{% url 'post-detail' post.id %}">キャンセル</a>
   </div>
 </form>
 {% endblock content %}
