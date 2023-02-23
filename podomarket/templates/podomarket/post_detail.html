@@ -8,10 +8,10 @@
 {% block content %}
 <div class="post-detail">
   <div class="header">
-    <a href="#">&lt; ホームヘ</a>
+    <a href="{% url 'index' %}">&lt; ホームヘ</a>
     <div class="buttons">
-      <a class="podo-button small negative" href="#">削除</a>
-      <a class="podo-button small secondary" href="#">編集</a>
+      <a class="podo-button small negative" href="{% url 'post-delete' post.id %}">削除</a>
+      <a class="podo-button small secondary" href="{% url 'post-update' post.id %}">編集</a>
     </div>
   </div>
   <article>
@@ -26,7 +26,7 @@
       <h2 class="title">{{ post.title }}</h2>
       <div class="item-info">
         <div class="item-price">{{ post.item_price|intcomma }}円</div>
-        <div class="podo-chip primary">状態 {{ post.item_condition }}</div>
+        <div class="podo-chip primary">状態 「{{ post.item_condition }}」</div>
         <span class="date">{{ post.dt_created|date:"Y.m.d" }}</span>
       </div>
     </div>
