@@ -39,8 +39,8 @@
       {% endfor %}
     </div>
     <div class="kakao_id">
-      {{ form.kakao_id|add_class:"podo-input"|attr:"placeholder:LINE ID"|add_error_class:"error" }}
-      {% for error in form.kakao_id.errors %}
+      {{ form.line_id|add_class:"podo-input"|attr:"placeholder:LINE ID"|add_error_class:"error" }}
+      {% for error in form.line_id.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
