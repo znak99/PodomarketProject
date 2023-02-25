@@ -43,22 +43,36 @@ class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     def test_func(self, user):
         return EmailAddress.objects.filter(user=user, verified=True).exists()
     
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostUpdateForm
     template_name = "podomarket/post_form.html"
     pk_url_kwarg = "post_id"
     
+    raise_exception = True
+    redirect_unauthenticated_users = False
+    
     def get_success_url(self):
         return reverse('post-detail', kwargs={'post_id': self.object.id})
+    
+    def test_func(self, user):
+        post = self.get_object()
+        return post.author == user
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = "podomarket/post_confirm_delete.html"
     pk_url_kwarg = "post_id"
     
+    raise_exception = True
+    redirect_unauthenticated_users = False
+    
     def get_success_url(self):
         return reverse('index')
+    
+    def test_func(self, user):
+        post = self.get_object()
+        return post.author == user
 
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
