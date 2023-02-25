@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="podo-noti purple email-confirm-noti">
-  <p>出品するにはメールの認証が必要です。{{ user.email }}で送られたメールを確認してください</p>
+  <p>出品するにはメール認証が必要です。<br />{{ user.email }}<br />に送られたメールを確認してメール認証を完了してください。</p>
   <a class="podo-button darkpurple link" href="{% url 'index' %}">ホームヘ</a>
 </div>
 {% endblock content %}
