@@ -28,7 +28,7 @@
       <h2 class="title">{{ post.title }}</h2>
       <div class="item-info">
         <div class="item-price {% if post.is_sold %}sold{% endif %}">
-          {{ post.item_price|intcomma }}円
+          {{ post.item_price|intcomma:False }}円
         </div>
         <div class="podo-chip primary">状態 「{{ post.item_condition }}」</div>
         <span class="date">{{ post.dt_created|date:"Y.m.d" }}</span>

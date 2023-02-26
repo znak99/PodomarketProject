@@ -21,7 +21,7 @@
           <h2 class="title">{{ post.title }}</h2>
           <div class="price-and-status">
             <span class="price">
-              {{ post.item_price|intcomma }}円
+              {{ post.item_price|intcomma:False }}円
             </span>
           </div>
           <div class="meta">
