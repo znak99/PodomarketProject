@@ -1,16 +1,16 @@
 from django import forms
 from .models import User, Post
 
-class SignupForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['nickname', 'line_id', 'address']
+# class SignupForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['nickname', 'line_id', 'address']
     
-    def signup(self, request, user):
-        user.nickname = self.cleaned_data['nickname']
-        user.line_id = self.cleaned_data['line_id']
-        user.address = self.cleaned_data['address']
-        user.save()
+#     def signup(self, request, user):
+#         user.nickname = self.cleaned_data['nickname']
+#         user.line_id = self.cleaned_data['line_id']
+#         user.address = self.cleaned_data['address']
+#         user.save()
 
 class PostCreateForm(forms.ModelForm):
     class Meta:
@@ -44,3 +44,13 @@ class PostUpdateForm(forms.ModelForm):
         widgets = {
             'item_condition': forms.RadioSelect,
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'profile_pic',
+            'nickname',
+            'line_id',
+            'address',
+        ]

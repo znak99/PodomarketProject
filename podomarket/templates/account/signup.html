@@ -32,7 +32,7 @@
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
-    <div class="nickname">
+    {% comment %} <div class="nickname">
       {{ form.nickname|add_class:"podo-input"|attr:"placeholder:ユーザーネーム"|add_error_class:"error" }}
       {% for error in form.nickname.errors %}
         <div class="error-message">{{ error }}</div>
@@ -49,7 +49,7 @@
       {% for error in form.address.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
-    </div>
+    </div> {% endcomment %}
     <button class="podo-button large primary submit" type="submit">会員登録</button>
   </form>
 
