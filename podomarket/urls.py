@@ -19,5 +19,10 @@ urlpatterns = [
         "users/<int:user_id>/",
         views.ProfileView.as_view(),
         name="profile"
-    )
+    ),
+    path(
+        'users/<int:user_id>/posts/', 
+        views.UserPostListView.as_view(), 
+        name='user-post-list'
+    ),
 ]

@@ -1,0 +1,67 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}{{ profile_user.nickname }}の商品 | ポドマーケット{% endblock title %}
+
+{% block content %}
+<div class="post-list">
+  <div class="header">
+    <h2>{{ profile_user.nickname }}の商品 ({{ paginator.count }})</h2>
+  </div>
+
+  <div class="posts">
+    {% for post in user_posts %}
+      <div class="podo-card post">
+        <img class="thumb" src="{{ post.image1.url }}" alt="イメージ">
+        <div class="content">
+          <h2 class="title">{{ post.title }}</h2>
+          <div class="price-and-status">
+            <span class="price">
+              {{ post.item_price|intcomma }}円
+            </span>
+          </div>
+          <div class="meta">
+            {{ post.dt_created|date:"Y.m.d" }}&nbsp;|&nbsp;{{ post.author.address }}
+          </div>
+          <a class="podo-button primary button" href="{% url 'post-detail' post.id %}">
+            詳細を見る
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="empty">出品している商品がありません :(</p>
+    {% endfor %}
+  </div>
+
+  <div class="wrap-pagination">
+    <a class="backbutton" href="{% url 'profile' profile_user.id %}">
+      <img class="triangle-icon" src="{% static 'podomarket/icons/ic-triangle.svg' %}" alt="triangle icon">
+      プロフィールをみる
+    </a>
+    <ul class="pagination">
+      {% if is_paginated %}
+        {% if page_obj.has_previous %}
+          <li><a href="?page=1">最初</a></li>
+          <li><a href="?page={{ page_obj.previous_page_number }}">前</a></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="current">{{ num }}</li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li><a href="?page={{ page_obj.next_page_number }}">後</a></li>
+          <li><a href="?page={{ page_obj.paginator.num_pages }}">最後</a></li>
+        {% endif %}
+      {% endif %}
+    </ul>
+    <div class="spacer"></div>
+  </div>
+</div>
+{% endblock content %}
