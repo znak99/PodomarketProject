@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'podomarket.middleware.ProfileSetupMiddleware',
 ]
 
 ROOT_URLCONF = 'PodomarketProject.urls'
