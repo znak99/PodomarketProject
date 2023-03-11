@@ -41,7 +41,7 @@ class CustomPasswordValidator:
                 not contains_lowercase_letter(password) or
                 not contains_number(password) 
         ):
-            raise ValidationError("* 8文字以上の半角英数字")
+            raise ValidationError("* 8文字以上の記号を含めた大小半角英数字")
 
     def get_help_text(self):
-        return "* 8文字以上の半角英数字"
+        return "* 8文字以上の記号を含めた大小半角英数字"
