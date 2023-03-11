@@ -1,14 +1,11 @@
-{% extends "podomarket_base/base.html" %}
+{% extends "podomarket_base/base_with_header.html" %}
 {% load widget_tweaks %}
 
-{% block title %}ようこそ! | ポドマーケット{% endblock title %}
-
-{% block body_class %}with-border with-background{% endblock %}
+{% block title %}プロフィール編集 | ポドマーケット{% endblock title %}
 
 {% block content %}
 <div class="profile-form">
-  <h1 class="heading">ようこそ！<br><strong>プロフィール</strong>を作成してください。</h1>
-  <form class="form" method="post" autocomplete="off" enctype="multipart/form-data">
+  <form class="form" method="post" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token %}
     <div class="profile-pic">
       <div class="thumb" style="background-image: url('{{ user.profile_pic.url }}')"></div>
@@ -29,12 +26,15 @@
       {% endfor %}
     </div>
     <div class="address">
-      {{ form.address|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:住所 (例: 東京都新宿区)" }}
+      {{ form.address|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:住所" }}
       {% for error in form.address.errors %}
         <div class="error-message">{{ error }}</div>
       {% endfor %}
     </div>
-    <button class="podo-button large primary submit-only" type="submit">완료</button>
+    <div class="buttons">
+      <a class="podo-button large secondary cancel" href="{% url 'profile' user.id %}">もどる</a>
+      <button class="podo-button large primary submit" type="submit">完了</button>
+    </div>
   </form>
 </div>
 {% endblock content %}
